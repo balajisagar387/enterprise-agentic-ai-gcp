@@ -1,0 +1,6 @@
+google-adk
+mcp>=1.24,<2
+google-auth
+requests
+google-cloud-logging
+python-dotenv

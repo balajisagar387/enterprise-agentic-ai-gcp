@@ -1,0 +1,24 @@
+# Python virtual environments & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Environment and sensitive keys
+.env
+.env.local
+*.key
+*.pem
+credentials.json
+
+# Cloud SDK & ADK build artifacts
+.gcloud/
+cloudbuild-*.yaml
+.adk/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

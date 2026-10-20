@@ -1,0 +1,7 @@
+google-adk==1.28.0
+langchain==1.2.14
+langchain-community==0.4.1
+wikipedia
+google-cloud-logging
+google-auth
+python-dotenv

@@ -1,0 +1,28 @@
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+.adk/
+
+# Environment configurations & credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*credentials*.json
+*-key.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
