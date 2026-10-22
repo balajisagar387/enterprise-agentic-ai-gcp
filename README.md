@@ -81,7 +81,10 @@ flowchart TD
 | [**02. Gemini Enterprise BigQuery MCP Data Store**](./GCP/02-gemini-enterprise-bigquery-mcp-datastore/) | **Gemini Enterprise, BigQuery, MCP StreamableHTTP, OAuth 2.0** | Zero-ETL Data Warehouse Grounding, Dynamic Tool Discovery, User-Delegated Security | ✅ Complete |
 | [**03. Gemini Enterprise Model Armor & Workspace RAG**](./GCP/03-gemini-enterprise-workspace-model-armor/) | **Gemini Enterprise, Model Armor, Workspace RAG, Gemini 3.1 Pro** | Bilateral AI Security Firewall (Prompt Injection / PII Blocker), Multi-Source ACLs | ✅ Complete |
 | [**04. Zero-Trust MCP Server on Cloud Run with IAP**](./GCP/secure-access-mcp-cloudrun-iap/) | **Cloud Run, Identity-Aware Proxy (IAP), FastMCP, VPC Ingress** | 4-Layer Defense-in-Depth for MCP Tools, Audience Validation, Network Hardening | ✅ Complete |
-| [**05. Cloud Run Remote MCP Agent with HITL**](./GCP/cloud-run-remote-mcp-agent/) | **Google ADK, Google Remote MCP, Gemini, HITL Guardrails** | Autonomous Cloud Operations, Dynamic Tool Interception, Mutating Action Approvals | ✅ Complete |
+| [**05. Cloud Run Remote MCP Agent with HITL**](./GCP/cloud-run-remote-mcp-agent/) | **Google ADK, Google Remote MCP, Gemini, HITL Guardrails** | Autonomous Cloud Operations, Dynamic Tool Interception, Mutating Action Approvals | 🔄 In Progress |
+| [**06. BigQuery Agent on Agent Runtime with Agent Identity**](./GCP/06-agent-runtime-bigquery-identity/) | **Vertex AI Agent Runtime, BigQuery, Agent Identity, Gemini 2.5 Flash** | Autonomous SQL Financial Analytics, Zero-Trust Agent Principal Isolation | ✅ Complete |
+| [**07. Multi-Agent Ecosystem in Gemini Enterprise**](./GCP/07-gemini-enterprise-agent-designer-adk/) | **Gemini Enterprise, Agent Designer, ADK Agent Runtime, OAuth 2.0 Delegation** | Multi-Agent Enterprise Portal, Grounded Search & Declarative Brand Voice Microservices | ✅ Complete |
+| [**08. Accelerating Development with Antigravity & Agent Runtime**](./GCP/08-antigravity-mcp-agent-runtime/) | **Antigravity CLI (agy), MCP, FastMCP, Google Agents CLI, Agent Runtime** | Declarative Workspace Rules, Custom Skills, Logistics Triage Microservice | ✅ Complete |
 
 ---
 

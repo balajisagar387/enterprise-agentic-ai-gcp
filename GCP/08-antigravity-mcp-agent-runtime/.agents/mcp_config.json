@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "cymbal-logistics": {
+      "command": "python3",
+      "args": [
+        "mcp/cymbal_direct_mcp.py"
+      ]
+    }
+  }
+}
