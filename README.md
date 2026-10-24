@@ -84,17 +84,17 @@ flowchart TD
 
 ---
 
-## 📂 Implementation Modules Catalog
+## 📂 Enterprise Solution Architectures
 
 ### 🛡️ 1. Security & Governance
-| Module | Core Technologies | Architecture Pattern & Focus | Status |
+| Reference Architecture | Core Technologies | Architecture Pattern & Focus | Status |
 | :--- | :--- | :--- | :---: |
 | [**Model Armor LLM Firewall**](./GCP/security-and-governance/model-armor-llm-firewall/) | **Gemini Enterprise, Model Armor, Workspace RAG, Gemini 3.1 Pro** | Bilateral AI Security Firewall (Prompt Injection / PII Blocker), Multi-Source ACLs | ✅ Complete |
 | [**Cloud Run IAP Zero-Trust MCP**](./GCP/security-and-governance/cloudrun-iap-zero-trust-mcp/) | **Cloud Run, Identity-Aware Proxy (IAP), FastMCP, VPC Ingress** | 4-Layer Defense-in-Depth for MCP Tools, Audience Validation, Network Hardening | ✅ Complete |
 | [**Agent Identity Workload Federation**](./GCP/security-and-governance/agent-identity-workload-federation/) | **Vertex AI Agent Runtime, BigQuery, Agent Identity, Gemini 2.5 Flash** | Autonomous SQL Financial Analytics, Zero-Trust Agent Principal Isolation | ✅ Complete |
 
 ### 🤖 2. Multi-Agent Systems & Tooling
-| Module | Core Technologies | Architecture Pattern & Focus | Status |
+| Reference Architecture | Core Technologies | Architecture Pattern & Focus | Status |
 | :--- | :--- | :--- | :---: |
 | [**ADK MCP Cloud Run Orchestration**](./GCP/multi-agent-systems/adk-mcp-cloudrun-orchestration/) | **Google ADK, FastMCP, Cloud Run, Vertex AI** | Decoupled Reasoning vs Tooling, Sequential Multi-Agent Orchestration, Serverless Autoscaling | ✅ Complete |
 | [**Cloud Run Remote MCP with HITL**](./GCP/multi-agent-systems/cloudrun-remote-mcp-hitl/) | **Google ADK, Google Remote MCP, Gemini, HITL Guardrails** | Autonomous Cloud Operations, Dynamic Tool Interception, Mutating Action Approvals | 🔄 In Progress |
@@ -102,7 +102,7 @@ flowchart TD
 | [**Enterprise Brand Voice Designer**](./GCP/multi-agent-systems/enterprise-brand-voice-designer/) | **Gemini Enterprise, Agent Designer, ADK Agent Runtime, OAuth 2.0 Delegation** | Multi-Agent Enterprise Portal, Grounded Search & Declarative Brand Voice Microservices | ✅ Complete |
 
 ### 📊 3. Data Runtime, Analytics & Evaluations
-| Module | Core Technologies | Architecture Pattern & Focus | Status |
+| Reference Architecture | Core Technologies | Architecture Pattern & Focus | Status |
 | :--- | :--- | :--- | :---: |
 | [**BigQuery Agent Trajectory Evals & Guardrails**](./GCP/data-runtime-and-evals/bigquery-agent-eval-guardrails/) | **Google ADK, BigQuery, Gemini 3.5 Flash, Trajectory Evals** | Automated Agent Evaluation, Deterministic State Machine Guardrails, Zero Data Loss | ✅ Complete |
 | [**BigQuery MCP Enterprise Analytics**](./GCP/data-runtime-and-evals/bigquery-mcp-enterprise-analytics/) | **Gemini Enterprise, BigQuery, MCP StreamableHTTP, OAuth 2.0** | Zero-ETL Data Warehouse Grounding, Dynamic Tool Discovery, User-Delegated Security | ✅ Complete |
@@ -142,7 +142,7 @@ flowchart TD
 
 ## 🚀 Repository Navigation
 
-Each module directory contains:
+Each solution directory contains:
 - **`README.md`**: Executive summary, system architecture diagrams, business use cases, and configuration parameters.
 - **Application Code**: Production Python implementations (`agent.py`, `server.py`, `Dockerfile`, `requirements.txt`).
 - **`docs/`**: Technical whitepapers detailing protocol mechanics, IAM flows, and sample enterprise query cookbooks.

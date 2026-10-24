@@ -126,7 +126,7 @@ root_agent = Agent(
 
 ---
 
-## 📁 Module Directory Structure
+## 📁 Solution Directory Structure
 
 ```
 GCP/multi-agent-systems/retail-paint-planner-subagents/

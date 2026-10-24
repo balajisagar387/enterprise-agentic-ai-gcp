@@ -97,7 +97,7 @@ Using Google ADK's `adk eval` engine, we created a repeatable multi-turn evaluat
 
 ---
 
-## 📁 Module Directory Structure
+## 📁 Solution Directory Structure
 
 ```
 GCP/data-runtime-and-evals/bigquery-agent-eval-guardrails/
