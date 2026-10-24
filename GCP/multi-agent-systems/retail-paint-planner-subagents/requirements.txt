@@ -1,0 +1,5 @@
+google-adk>=1.0.0
+google-cloud-aiplatform>=1.60.0
+chainlit==2.11.1
+python-dotenv>=1.0.0
+vertexai>=1.60.0

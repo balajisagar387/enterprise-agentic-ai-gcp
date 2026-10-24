@@ -21,6 +21,8 @@ This repository demonstrates production-grade reference implementations solving 
 3. **Conversational Data Grounding**: Enabling natural language SQL analytics over enterprise **BigQuery** data warehouses with user-delegated OAuth 2.0 permissions.
 4. **DevOps Automation with Guardrails**: Autonomous infrastructure management via **Google Remote Cloud Run MCP** coupled with **Human-in-the-Loop (HITL)** approval gates for destructive mutations.
 5. **Bilateral AI Security**: Intercepting prompt injections, sensitive data exposure, and toxic outputs using **Google Model Armor**.
+6. **Agent Reliability & Trajectory Evaluations**: Eliminating silent database record drops and illegal workflow shortcuts through automated **Google ADK multi-turn rubric evaluations** and deterministic state machine Python tools.
+7. **Collaborative Multi-Agent Architectures**: Combining unstructured document search (Vertex AI Agent Search) with dynamic mathematical reasoning and session state persistence on **Vertex AI Agent Runtime**.
 
 ---
 
@@ -30,7 +32,7 @@ This repository demonstrates production-grade reference implementations solving 
 flowchart TD
     subgraph Clients["User & Client Layer"]
         User(["Enterprise User / Operator"])
-        ChatApp["Gemini Enterprise / ADK Web UI"]
+        ChatApp["Gemini Enterprise / ADK Web UI / Chainlit"]
     end
 
     subgraph SecurityFabric["Zero-Trust Security & Governance"]
@@ -43,19 +45,24 @@ flowchart TD
         Greeter["Entrypoint / Greeter Agent"]
         Workflow["SequentialAgent Pipeline"]
         DevOpsAgent["CloudRunAgent (HITL Guardrails)"]
+        EvalAgent["Cymbal Pools Agent (Deterministic Guardrails)"]
+        PaintAgent["Cymbal Shops Multi-Agent (Room Planning & Costing)"]
         Researcher["Comprehensive Researcher Agent"]
     end
 
-    subgraph ToolingLayer["Decoupled Tooling Layer (MCP Standard)"]
+    subgraph ToolingLayer["Decoupled Tooling Layer (MCP & Custom Guardrails)"]
         RemoteMCP["Google Remote Cloud Run MCP Server\n(https://run.googleapis.com/mcp)"]
         PrivateMCP["Private FastMCP Microservice\n(Cloud Run --ingress internal)"]
         BQ_MCP["BigQuery MCP Data Store\n(StreamableHTTP Transport)"]
-        ExternalAPI["External APIs (LangChain Wikipedia / Search)"]
+        StateGuardrails["check_transaction & perform_consistent_transaction\n(State Machine DAG & Atomic Ordering)"]
+        AgentToolSearch["AgentTool(search_agent)\n(Isolated Vertex AI Agent Search)"]
     end
 
     subgraph StorageCompute["Enterprise Data & Infrastructure"]
-        BigQuery[("BigQuery Enterprise DWH\n(Sales & Leasing Data)")]
+        BigQuery[("BigQuery Enterprise DWH\n(pool_data & Enterprise Schemas)")]
         CloudRunEngine["Cloud Run Serverless Compute\n(Auto 0-to-N Instances)"]
+        AgentRuntimeEngine["Vertex AI Agent Runtime\n(Managed Reasoning Engine)"]
+        SearchDatastore[("Vertex AI Agent Search Datastore\n(Cymbal Paint PDF Documents)")]
     end
 
     User <--> ChatApp
@@ -67,7 +74,11 @@ flowchart TD
     RemoteMCP --> CloudRunEngine
     ReasoningLayer --> BQ_MCP
     BQ_MCP --> BigQuery
-    ReasoningLayer --> ExternalAPI
+    ReasoningLayer --> StateGuardrails
+    StateGuardrails --> BigQuery
+    ReasoningLayer --> AgentToolSearch
+    AgentToolSearch --> SearchDatastore
+    ReasoningLayer --> AgentRuntimeEngine
     IAM_OIDC -.-> SecurityFabric
 ```
 
@@ -75,16 +86,27 @@ flowchart TD
 
 ## 📂 Implementation Modules Catalog
 
+### 🛡️ 1. Security & Governance
 | Module | Core Technologies | Architecture Pattern & Focus | Status |
 | :--- | :--- | :--- | :---: |
-| [**01. ADK Agent with Remote MCP Server**](./GCP/01-adk-mcp-cloudrun-agent/) | **Google ADK, FastMCP, Cloud Run, Vertex AI** | Decoupled Reasoning vs Tooling, Sequential Multi-Agent Orchestration, Serverless Autoscaling | ✅ Complete |
-| [**02. Gemini Enterprise BigQuery MCP Data Store**](./GCP/02-gemini-enterprise-bigquery-mcp-datastore/) | **Gemini Enterprise, BigQuery, MCP StreamableHTTP, OAuth 2.0** | Zero-ETL Data Warehouse Grounding, Dynamic Tool Discovery, User-Delegated Security | ✅ Complete |
-| [**03. Gemini Enterprise Model Armor & Workspace RAG**](./GCP/03-gemini-enterprise-workspace-model-armor/) | **Gemini Enterprise, Model Armor, Workspace RAG, Gemini 3.1 Pro** | Bilateral AI Security Firewall (Prompt Injection / PII Blocker), Multi-Source ACLs | ✅ Complete |
-| [**04. Zero-Trust MCP Server on Cloud Run with IAP**](./GCP/secure-access-mcp-cloudrun-iap/) | **Cloud Run, Identity-Aware Proxy (IAP), FastMCP, VPC Ingress** | 4-Layer Defense-in-Depth for MCP Tools, Audience Validation, Network Hardening | ✅ Complete |
-| [**05. Cloud Run Remote MCP Agent with HITL**](./GCP/cloud-run-remote-mcp-agent/) | **Google ADK, Google Remote MCP, Gemini, HITL Guardrails** | Autonomous Cloud Operations, Dynamic Tool Interception, Mutating Action Approvals | 🔄 In Progress |
-| [**06. BigQuery Agent on Agent Runtime with Agent Identity**](./GCP/06-agent-runtime-bigquery-identity/) | **Vertex AI Agent Runtime, BigQuery, Agent Identity, Gemini 2.5 Flash** | Autonomous SQL Financial Analytics, Zero-Trust Agent Principal Isolation | ✅ Complete |
-| [**07. Multi-Agent Ecosystem in Gemini Enterprise**](./GCP/07-gemini-enterprise-agent-designer-adk/) | **Gemini Enterprise, Agent Designer, ADK Agent Runtime, OAuth 2.0 Delegation** | Multi-Agent Enterprise Portal, Grounded Search & Declarative Brand Voice Microservices | ✅ Complete |
-| [**08. Accelerating Development with Antigravity & Agent Runtime**](./GCP/08-antigravity-mcp-agent-runtime/) | **Antigravity CLI (agy), MCP, FastMCP, Google Agents CLI, Agent Runtime** | Declarative Workspace Rules, Custom Skills, Logistics Triage Microservice | ✅ Complete |
+| [**Model Armor LLM Firewall**](./GCP/security-and-governance/model-armor-llm-firewall/) | **Gemini Enterprise, Model Armor, Workspace RAG, Gemini 3.1 Pro** | Bilateral AI Security Firewall (Prompt Injection / PII Blocker), Multi-Source ACLs | ✅ Complete |
+| [**Cloud Run IAP Zero-Trust MCP**](./GCP/security-and-governance/cloudrun-iap-zero-trust-mcp/) | **Cloud Run, Identity-Aware Proxy (IAP), FastMCP, VPC Ingress** | 4-Layer Defense-in-Depth for MCP Tools, Audience Validation, Network Hardening | ✅ Complete |
+| [**Agent Identity Workload Federation**](./GCP/security-and-governance/agent-identity-workload-federation/) | **Vertex AI Agent Runtime, BigQuery, Agent Identity, Gemini 2.5 Flash** | Autonomous SQL Financial Analytics, Zero-Trust Agent Principal Isolation | ✅ Complete |
+
+### 🤖 2. Multi-Agent Systems & Tooling
+| Module | Core Technologies | Architecture Pattern & Focus | Status |
+| :--- | :--- | :--- | :---: |
+| [**ADK MCP Cloud Run Orchestration**](./GCP/multi-agent-systems/adk-mcp-cloudrun-orchestration/) | **Google ADK, FastMCP, Cloud Run, Vertex AI** | Decoupled Reasoning vs Tooling, Sequential Multi-Agent Orchestration, Serverless Autoscaling | ✅ Complete |
+| [**Cloud Run Remote MCP with HITL**](./GCP/multi-agent-systems/cloudrun-remote-mcp-hitl/) | **Google ADK, Google Remote MCP, Gemini, HITL Guardrails** | Autonomous Cloud Operations, Dynamic Tool Interception, Mutating Action Approvals | 🔄 In Progress |
+| [**Retail Paint Planner Sub-Agents**](./GCP/multi-agent-systems/retail-paint-planner-subagents/) | **Google ADK, Vertex AI Search, Agent Runtime, Chainlit** | Multi-Agent Collaborative Architecture, AgentTool Search Isolation, Session State Persistence | ✅ Complete |
+| [**Enterprise Brand Voice Designer**](./GCP/multi-agent-systems/enterprise-brand-voice-designer/) | **Gemini Enterprise, Agent Designer, ADK Agent Runtime, OAuth 2.0 Delegation** | Multi-Agent Enterprise Portal, Grounded Search & Declarative Brand Voice Microservices | ✅ Complete |
+
+### 📊 3. Data Runtime, Analytics & Evaluations
+| Module | Core Technologies | Architecture Pattern & Focus | Status |
+| :--- | :--- | :--- | :---: |
+| [**BigQuery Agent Trajectory Evals & Guardrails**](./GCP/data-runtime-and-evals/bigquery-agent-eval-guardrails/) | **Google ADK, BigQuery, Gemini 3.5 Flash, Trajectory Evals** | Automated Agent Evaluation, Deterministic State Machine Guardrails, Zero Data Loss | ✅ Complete |
+| [**BigQuery MCP Enterprise Analytics**](./GCP/data-runtime-and-evals/bigquery-mcp-enterprise-analytics/) | **Gemini Enterprise, BigQuery, MCP StreamableHTTP, OAuth 2.0** | Zero-ETL Data Warehouse Grounding, Dynamic Tool Discovery, User-Delegated Security | ✅ Complete |
+| [**Antigravity MCP Logistics Runtime**](./GCP/data-runtime-and-evals/antigravity-mcp-logistics-runtime/) | **Antigravity CLI (agy), MCP, FastMCP, Google Agents CLI, Agent Runtime** | Declarative Workspace Rules, Custom Skills, Logistics Triage Microservice | ✅ Complete |
 
 ---
 
@@ -103,7 +125,16 @@ flowchart TD
 * Autonomous agents operating against cloud infrastructure or enterprise records must not have unchecked write/delete permissions.
 * Mutating keywords (`create`, `deploy`, `update`, `delete`) trigger mandatory `_require_confirmation = True` gates in the UI before actions execute.
 
-### 4. Zero-ETL In-Place Data Grounding
+### 4. Deterministic Guardrails & Automated Trajectory Evaluation
+* LLM prompts alone are probabilistic and insufficient to guarantee data safety across transactional tables.
+* Critical business state transitions must be verified in software via deterministic state-machine validators (`check_transaction`) and atomic transaction wrappers (`perform_consistent_transaction`).
+* Automated multi-turn trajectory rubrics (`adk eval`) measure tool-call accuracy and prevent regressions before production deployment.
+
+### 5. Multi-Agent Tool Isolation (`AgentTool` Pattern)
+* Solves cloud provider tool conflict limits (such as Vertex AI's restriction preventing native search tools from being combined with custom function tools).
+* Encapsulates document-search agents inside `AgentTool` instances to permit arbitrary session state and calculation tools to run in tandem.
+
+### 6. Zero-ETL In-Place Data Grounding
 * Avoids costly vector ingestion pipelines for tabular enterprise data.
 * Natural language questions are converted into governed SQL queries evaluated directly inside BigQuery under the end user's IAM permissions.
 
@@ -113,14 +144,35 @@ flowchart TD
 
 Each module directory contains:
 - **`README.md`**: Executive summary, system architecture diagrams, business use cases, and configuration parameters.
-- **`lab_notes.md`**: Step-by-step reproduction playbook, command cheat sheet, and verified troubleshooting incident logs.
 - **Application Code**: Production Python implementations (`agent.py`, `server.py`, `Dockerfile`, `requirements.txt`).
 - **`docs/`**: Technical whitepapers detailing protocol mechanics, IAM flows, and sample enterprise query cookbooks.
 
 ---
 
-## 🏢 Business Relevance for Enterprise Clients (WeWork)
+## 🏢 Business Relevance for Enterprise Clients
 
-* **Workplace Operations & Facilities**: Secure MCP tools managing desk allocations, HVAC scheduling, and access control with zero-trust auditability.
+* **Workplace & Field Operations**: Secure tools managing lifecycle workflows, customer requests, and asset scheduling with zero-trust auditability.
 * **Tenant & Commercial Analytics**: Conversational reporting over lease renewals, occupancy rates, and billable services directly in BigQuery.
 * **Self-Service DevOps Sandboxes**: Guardrailed AI agents deploying and managing ephemeral container workloads on Google Cloud Run.
+* **Risk & Compliance Assurance**: Dual-perimeter AI firewalls (Model Armor) and automated trajectory evaluations protecting against prompt injection, PII leakage, and data loss.
+* **Retail & Renovation Advisory**: Multi-agent conversational systems connecting unstructured datasheet retrieval with precise architectural and pricing calculations.
+
+---
+
+## 💼 Consulting & Client Engagement Models
+
+I partner with enterprise clients, engineering leaders, and AI startups on Upwork to design, harden, and deploy production-grade agentic architectures:
+
+| Engagement Tier | Scope & Focus | Typical Timeline | Deliverables |
+| :--- | :--- | :---: | :--- |
+| **Tier 1: Architectural Audit & Agent Feasibility** | Architecture assessment, MCP vs. native tool selection, IAM delegation review, threat modeling | 1 – 2 Weeks | Formal Architecture Blueprint, Threat Model Report, Tooling Specification |
+| **Tier 2: Production Multi-Agent MVP & Tooling** | ADK / Agent Runtime orchestration, private Cloud Run FastMCP microservices, IAP zero-trust, Web UI | 2 – 4 Weeks | Fully deployable codebase, container configurations, automated deployment scripts |
+| **Tier 3: Enterprise Hardening & Trajectory Evals** | Deterministic state machine guardrails, Model Armor firewalls, ADK multi-turn rubric evaluation pipelines | Ongoing / Retainer | 100% pass-rate eval suites, regression prevention pipelines, production runbooks |
+
+*Looking to build or scale your agentic AI systems? Review our [Upwork Proposal & Engagement Playbook](./docs/UPWORK_PROPOSAL_TEMPLATES.md) or connect via Upwork.*
+
+---
+
+## 📄 License
+
+This repository is licensed under the [Apache 2.0 License](./LICENSE).

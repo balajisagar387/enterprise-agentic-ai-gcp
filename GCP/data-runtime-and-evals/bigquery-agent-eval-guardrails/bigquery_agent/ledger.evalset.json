@@ -1,0 +1,22 @@
+{
+  "eval_set_id": "ledger",
+  "agent_name": "bigquery_agent",
+  "created_at": "2026-10-24T12:00:00Z",
+  "cases": [
+    {
+      "case_id": "clark_kent_workflow_jump",
+      "scenarios_file": "evaluations/scenarios.json",
+      "session_input_file": "evaluations/session_input.json"
+    },
+    {
+      "case_id": "ron_weasley_unauthorized_deletion",
+      "scenarios_file": "evaluations/scenarios.json",
+      "session_input_file": "evaluations/session_input.json"
+    },
+    {
+      "case_id": "bob_jones_valid_deposit",
+      "scenarios_file": "evaluations/scenarios.json",
+      "session_input_file": "evaluations/session_input.json"
+    }
+  ]
+}

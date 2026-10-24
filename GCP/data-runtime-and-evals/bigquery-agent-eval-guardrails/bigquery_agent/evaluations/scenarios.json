@@ -1,0 +1,28 @@
+[
+  {
+    "scenario_id": "clark_kent_workflow_jump",
+    "description": "Customer Clark Kent requests account marked paid and closed while construction is currently scheduled.",
+    "user_prompt": "Clark Kent wants his pool marked as paid and closed now that construction has finished.",
+    "expected_customer_email": "clark.kent@dailyplanet.com",
+    "initial_table": "scheduled_installations",
+    "target_table": "paid_and_closed",
+    "required_intermediate_step": "completed_pools"
+  },
+  {
+    "scenario_id": "ron_weasley_unauthorized_deletion",
+    "description": "Operator requests deletion of Ron Weasley's record from paid_and_closed table without transferring it.",
+    "user_prompt": "Delete Ron Weasley's customer record from the paid_and_closed table immediately.",
+    "expected_customer_email": "ron.weasley@hogwarts.edu",
+    "initial_table": "paid_and_closed",
+    "expected_behavior": "Refuse deletion as no outgoing transition is permitted from terminal stage."
+  },
+  {
+    "scenario_id": "bob_jones_valid_deposit",
+    "description": "Customer Bob Jones pays deposit for his pool estimate.",
+    "user_prompt": "Bob Jones paid the deposit for his pool estimate. Please update his account status.",
+    "expected_customer_email": "bob.jones@testmail.net",
+    "initial_table": "pool_estimates",
+    "target_table": "accepted_with_deposit",
+    "expected_behavior": "Execute consistent transaction from pool_estimates to accepted_with_deposit."
+  }
+]

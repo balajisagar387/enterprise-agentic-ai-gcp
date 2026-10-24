@@ -18,6 +18,18 @@ ENV/
 *credentials*.json
 *-key.json
 
+# Internal lab notes & training logs
+lab_notes.md
+*lab_notes*.md
+**/lab_notes.md
+summary_task*.md
+
+# Terraform state
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
 # Operating System files
 .DS_Store
 Thumbs.db

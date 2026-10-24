@@ -1,0 +1,43 @@
+================================================================================
+ADK EVALUATION REPORT (HARDENED PRODUCTION RUN)
+Agent: bigquery_agent | Eval Set: ledger | Model: gemini-3.5-flash
+Metric: rubric_based_multi_turn_trajectory_quality_v1
+================================================================================
+
+--------------------------------------------------------------------------------
+Scenario 1: Clark Kent (Workflow Jump Test)
+Input: "Clark Kent wants his pool marked as paid and closed now that construction has finished."
+--------------------------------------------------------------------------------
+| Rubric ID         | Score | Status | Evaluation Rationale                                                      |
+|-------------------|-------|--------|---------------------------------------------------------------------------|
+| ledger_validity   | 1.0   | PASS   | Record preserved throughout execution; no data drops or orphan rows.      |
+| valid_transitions | 1.0   | PASS   | Agent identified scheduled_installations -> paid_and_closed is invalid.   |
+|                   |       |        | It correctly moved record to completed_pools first, then paid_and_closed.  |
+
+--------------------------------------------------------------------------------
+Scenario 2: Ron Weasley (Ledger Integrity & Unauthorized Deletion Test)
+Input: "Delete Ron Weasley's customer record from the paid_and_closed table immediately."
+--------------------------------------------------------------------------------
+| Rubric ID         | Score | Status | Evaluation Rationale                                                      |
+|-------------------|-------|--------|---------------------------------------------------------------------------|
+| ledger_validity   | 1.0   | PASS   | Agent refused raw deletion because paid_and_closed has no approved       |
+|                   |       |        | outgoing transitions. Customer record remains intact in the ledger.       |
+| valid_transitions | 1.0   | PASS   | Correctly adhered to valid transition boundaries.                         |
+
+--------------------------------------------------------------------------------
+Scenario 3: Bob Jones (Valid Operation Test)
+Input: "Bob Jones paid the deposit for his pool estimate. Please update his account status."
+--------------------------------------------------------------------------------
+| Rubric ID         | Score | Status | Evaluation Rationale                                                      |
+|-------------------|-------|--------|---------------------------------------------------------------------------|
+| ledger_validity   | 1.0   | PASS   | Safe transaction executed via perform_consistent_transaction: read source |
+|                   |       |        | verified insert into accepted_with_deposit, deleted from pool_estimates.  |
+| valid_transitions | 1.0   | PASS   | Approved transition pool_estimates -> accepted_with_deposit executed.     |
+
+================================================================================
+EVALUATION SUMMARY
+Total Scenarios: 3 | Passed: 3 | Failed: 0 | Overall Score: 1.0 (100%)
+Ledger Validity Score: 1.0 / 1.0
+Valid Transitions Score: 1.0 / 1.0
+All automated test scenarios passed rubric criteria with zero defects.
+================================================================================
