@@ -24,6 +24,10 @@ lab_notes.md
 **/lab_notes.md
 summary_task*.md
 
+# Internal consulting playbooks & proposal templates
+docs/UPWORK_PROPOSAL_TEMPLATES.md
+*UPWORK*.md
+
 # Terraform state
 .terraform/
 *.tfstate

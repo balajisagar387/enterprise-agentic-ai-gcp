@@ -169,7 +169,7 @@ I partner with enterprise clients, engineering leaders, and AI startups on Upwor
 | **Tier 2: Production Multi-Agent MVP & Tooling** | ADK / Agent Runtime orchestration, private Cloud Run FastMCP microservices, IAP zero-trust, Web UI | 2 – 4 Weeks | Fully deployable codebase, container configurations, automated deployment scripts |
 | **Tier 3: Enterprise Hardening & Trajectory Evals** | Deterministic state machine guardrails, Model Armor firewalls, ADK multi-turn rubric evaluation pipelines | Ongoing / Retainer | 100% pass-rate eval suites, regression prevention pipelines, production runbooks |
 
-*Looking to build or scale your agentic AI systems? Review our [Upwork Proposal & Engagement Playbook](./docs/UPWORK_PROPOSAL_TEMPLATES.md) or connect via Upwork.*
+*Looking to build, audit, or scale your agentic AI systems? Connect with me directly on Upwork to discuss your architecture requirements, technical feasibility assessments, and delivery milestones.*
 
 ---
 
